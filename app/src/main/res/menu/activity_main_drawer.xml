@@ -14,7 +14,7 @@
             android:title="@string/cargar" />
         <item
             android:id="@+id/nav_modificar"
-            android:icon="@drawable/ic_cargar"
+            android:icon="@drawable/ic_modificar"
             android:title="@string/modificar" />
         <item
             android:id="@+id/nav_salir"

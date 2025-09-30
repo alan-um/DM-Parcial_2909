@@ -42,6 +42,7 @@ public class ModificarViewModel extends AndroidViewModel {
 
     public void limpiarProducto(){
         producto=null;
+        error=null;
     }
     public void buscarProducto(String stcodigo) {
         int codigo = -1;

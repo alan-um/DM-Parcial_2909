@@ -59,15 +59,6 @@ public class ModificarFragment extends Fragment {
             vm.buscarProducto(c);
         });
 
-        //Other
-        /*if(getArguments()!=null){
-        Bundle bundle = getArguments();
-        String error = bundle.getString("error");
-        if (error != null) {
-            binding.tvErrorBuscar.setText(error);
-        }}*/
-
-
         return root;
         //return inflater.inflate(R.layout.fragment_modificar, container, false);
     }
