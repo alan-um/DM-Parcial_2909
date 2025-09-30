@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/nav_modificar"
         android:name="com.example.parcial_2909.ui.modificar.ModificarFragment"
-        android:label="@string/cargar"
+        android:label="Modificar"
         tools:layout="@layout/fragment_modificar" >
         <action
             android:id="@+id/action_nav_modificar_to_guardarFragment2"
@@ -36,7 +36,7 @@
     <fragment
         android:id="@+id/guardarFragment"
         android:name="com.example.parcial_2909.ui.modificar.GuardarFragment"
-        android:label="fragment_guardar"
+        android:label="Modificar"
         tools:layout="@layout/fragment_guardar" >
         <action
             android:id="@+id/action_guardarFragment_to_nav_modificar"

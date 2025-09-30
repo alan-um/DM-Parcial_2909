@@ -18,6 +18,8 @@ import java.util.ArrayList;
 public class GuardarViewModel extends AndroidViewModel {
     private MutableLiveData<Producto> producto;
     private MutableLiveData<String> error;
+    private int codigoAnterior;
+
     public GuardarViewModel(@NonNull Application application) {
         super(application);
     }
@@ -35,6 +37,10 @@ public class GuardarViewModel extends AndroidViewModel {
             error = new MutableLiveData<>();
         }
         return error;
+    }
+
+    public void cargarCodigoAnterior(String c) {
+        codigoAnterior = Integer.parseInt(c);
     }
 
     public void guardarProducto(String stcodigo, String descripcion, String stprecio) {
@@ -75,10 +81,12 @@ public class GuardarViewModel extends AndroidViewModel {
         }
 
         //Valida que el código no esté repetido en el inventario
-        //nuevo = new Producto(codigo, descripcion, precio);
-        /*if (inventario.contains(nuevo)) {
-            errores.add("El código ingresado ya existe en el inventario");
-        }*/
+        nuevo = new Producto(codigo, descripcion, precio);
+        if (codigo != codigoAnterior) {
+            if (inventario.contains(nuevo)) {
+                errores.add("El código ingresado ya existe en el inventario");
+            }
+        }
 
         //Si hay errores NO valida y actualiza en LiveData de errores.
         if (errores.size() > 0) {
@@ -89,9 +97,28 @@ public class GuardarViewModel extends AndroidViewModel {
             }
             error.setValue(sbError.toString());
         } else {//Si no actualiza el LiveData de producto
-            nuevo = new Producto(codigo, descripcion, precio);
-            inventario.add(nuevo);
+            if (codigo != codigoAnterior) {
+                nuevo = new Producto(codigo, descripcion, precio);
+                inventario.remove(buscarProductoPorCodigo(codigoAnterior));
+                inventario.add(nuevo);
+            }else{
+                for (Producto producto : inventario) {
+                    if (producto.getCogido()==codigo) {
+                        producto.setDescripcion(descripcion);
+                        producto.setPrecio(precio);
+                    }
+                }
+            }
             producto.setValue(nuevo);
         }
+
+    }
+    private Producto buscarProductoPorCodigo(int codigoBuscado) {
+        for (Producto producto : inventario) {
+            if (producto.getCogido() == codigoBuscado) {
+                return producto;
+            }
+        }
+        return null;
     }
 }

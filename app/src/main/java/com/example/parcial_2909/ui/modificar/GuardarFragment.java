@@ -39,7 +39,7 @@ public class GuardarFragment extends Fragment {
             binding.etCodigoModificar.setText("");
             binding.etDescripcionModificar.setText("");
             binding.etPrecioModificar.setText("");
-            Toast.makeText(getContext(), "El producto se ha agregado correctamente!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "El producto se ha modificado correctamente!!", Toast.LENGTH_SHORT).show();
         });
 
         vm.getError().observe(getViewLifecycleOwner(), error -> {
@@ -62,7 +62,7 @@ public class GuardarFragment extends Fragment {
         binding.etCodigoModificar.setText(c);
         binding.etDescripcionModificar.setText(d);
         binding.etPrecioModificar.setText(p);
-        //vm.mostrarProducto(c);
+        vm.cargarCodigoAnterior(c);
 
 
 
